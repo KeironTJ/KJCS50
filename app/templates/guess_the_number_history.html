@@ -2,11 +2,11 @@
 
 {% block content %}
 
-<div>
+<div class="customdiv">
     <h1>Settings:</h1>
 </div>
 
-<div>
+<div class="customdiv">
     <h1>History:</h1>
     
     <!-- Nice table format to display history-->
@@ -34,10 +34,10 @@
     </table>
 </div>
 
-<div>
-    <a href="{{ url_for('guess_the_number') }}">Play Game!</a>
+<div class="customdiv">
+    <a class="customa" href="{{ url_for('guess_the_number') }}">Play Game!</a>
     <br>
-    <a href="{{ url_for('guess_the_number_settings') }}">Settings</a>
+    <a class="customa" href="{{ url_for('guess_the_number_settings') }}">Settings</a>
 </div>
         
 

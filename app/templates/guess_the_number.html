@@ -2,34 +2,34 @@
 
 {% block content %}
 
-<div>
+<div class="customdiv">
     <h1>Guess The Number!</h1>
 
-    <p>Guess the number between {{ game_settings.start_range }} and {{ game_settings.end_range }}!</p> <!--PLACEHOLDER FOR CUSTOM RANGES-->
+    <p class="customp">Guess the number between {{ game_settings.start_range }} and {{ game_settings.end_range }}!</p> <!--PLACEHOLDER FOR CUSTOM RANGES-->
 
-    <p>Attempt: {{ user_guesses|length + 1  }}</p>
+    <p class="customp">Attempt: {{ user_guesses|length + 1  }}</p>
 
-    <form action="" method="post">
+    <form class="customform" action="" method="post">
         {{ guessform.hidden_tag() }}
-        <p>
+        <p class="customp">
             {{ guessform.user_guess.label }}<br>
-            {{ guessform.user_guess(size=32, autofocus=True) }}<br>
+            {{ guessform.user_guess(size=32, autofocus=True, class="custominput") }}<br>
             {% for error in guessform.user_guess.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
-        <p>{{ guessform.submit_guess() }}</p> 
+        <p class="customp">{{ guessform.submit_guess(class="custombutton") }}</p> 
     </form>
 
     {% if user_guesses|length != 0 %}
-        <p>Guesses: {{ user_guesses }} </p>
+        <p class="customp">Guesses: {{ user_guesses }} </p>
     {% endif %}
 </div>
 
-<div>
-    <a href="{{ url_for('guess_the_number_history') }}">History</a>
+<div class="customdiv">
+    <a class="customa" href="{{ url_for('guess_the_number_history') }}">History</a>
     <br>
-    <a href="{{ url_for('guess_the_number_settings') }}">Settings</a>
+    <a class="customa" href="{{ url_for('guess_the_number_settings') }}">Settings</a>
 </div>
 
 

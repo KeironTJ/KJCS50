@@ -2,32 +2,32 @@
 
 {% block content %}
 
-<div>
+<div class="customdiv">
     <h1>Settings:</h1>
-    <form action="" method="post">
+    <form class="customform" action="" method="post">
         {{ settingsform.hidden_tag() }}
-        <p>
+        <p class="customp">
             {{ settingsform.start_range.label }}<br>
-            {{ settingsform.start_range(size=32, value=game_settings.start_range) }}<br>
+            {{ settingsform.start_range(size=32, value=game_settings.start_range, class="custominput") }}<br>
             {% for error in settingsform.start_range.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
-        <p>
+        <p class="customp">
             {{ settingsform.end_range.label }}<br>
-            {{ settingsform.end_range(size=32, value=game_settings.end_range) }}<br>
+            {{ settingsform.end_range(size=32, value=game_settings.end_range, class="custominput") }}<br>
             {% for error in settingsform.end_range.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
-        <p>{{ settingsform.submit_settings() }}</p>
+        <p class="customp">{{ settingsform.submit_settings(class="custombutton") }}</p>
     </form>
 </div>
 
-<div>
-    <a href="{{ url_for('guess_the_number') }}">Play Game!</a>
+<div class="customdiv">
+    <a class="customa" href="{{ url_for('guess_the_number') }}">Play Game!</a>
     <br>
-    <a href="{{ url_for('guess_the_number_history') }}">History</a>
+    <a class="customa" href="{{ url_for('guess_the_number_history') }}">History</a>
 </div>
 
 
