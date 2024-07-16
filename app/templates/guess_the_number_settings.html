@@ -8,23 +8,27 @@
         {{ settingsform.hidden_tag() }}
         <p>
             {{ settingsform.start_range.label }}<br>
-            {{ settingsform.start_range(size=32) }}<br>
+            {{ settingsform.start_range(size=32, value=game_settings.start_range) }}<br>
             {% for error in settingsform.start_range.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
             {{ settingsform.end_range.label }}<br>
-            {{ settingsform.end_range(size=32) }}<br>
+            {{ settingsform.end_range(size=32, value=game_settings.end_range) }}<br>
             {% for error in settingsform.end_range.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>{{ settingsform.submit_settings() }}</p>
     </form>
+</div>
 
-
-
+<div>
+    <a href="{{ url_for('guess_the_number') }}">Play Game!</a>
+    <br>
+    <a href="{{ url_for('guess_the_number_history') }}">History</a>
+</div>
 
 
 {% endblock %}

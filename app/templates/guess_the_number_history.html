@@ -21,19 +21,28 @@
             </tr>
         </thead>
         <tbody>
-            {% for number, result in history %}
+            {% for game in history %}
                 <tr>
-                    <td>{{ result.username }}</td>
-                    <td>{{ result.start_range }}</td>
-                    <td>{{ result.end_range }}</td>
-                    <td>{{ result.correct_number }}</td>
-                    <td>{{ result.number_of_guesses }}</td>
+                    <td>{{ game.user.username }}</td>
+                    <td>{{ game.start_range }}</td>
+                    <td>{{ game.end_range }}</td>
+                    <td>{{ game.correct_number }}</td>
+                    <td>{{ game.number_of_guesses }}</td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
 </div>
+
+<div>
+    <a href="{{ url_for('guess_the_number') }}">Play Game!</a>
+    <br>
+    <a href="{{ url_for('guess_the_number_settings') }}">Settings</a>
+</div>
         
+
+
+
 
 
 

@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, IntegerField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from app import db
 import sqlalchemy as sa
@@ -38,10 +38,13 @@ class RegistrationForm(FlaskForm):
         
 
 class UserGuessForm(FlaskForm):
-    user_guess = StringField('Guess', validators=[DataRequired()])
+    user_guess = IntegerField('Guess', validators=[DataRequired()])
     submit_guess = SubmitField('Submit')
 
 class UserSettingsForm(FlaskForm):
-    start_range = StringField('Start Range', validators=[DataRequired()])
-    end_range = StringField('End Range', validators=[DataRequired()])
+    start_range = IntegerField('Start Range', validators=[DataRequired()])
+    end_range = IntegerField('End Range', validators=[DataRequired()])
     submit_settings = SubmitField('Submit')
+
+class UserResetForm(FlaskForm):
+    reset = SubmitField('Reset Game')
