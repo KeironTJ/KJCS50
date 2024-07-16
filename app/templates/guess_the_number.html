@@ -7,6 +7,17 @@
 
     <p>Guess the number between 1 and 100!</p> <!--PLACEHOLDER FOR CUSTOM RANGES-->
 
+    <form action="" method="post">
+        {{ guessform.hidden_tag() }}
+        <p>
+            {{ guessform.user_guess.label }}<br>
+            {{ guessform.user_guess(size=32) }}<br>
+            {% for error in guessform.user_guess.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ guessform.submit_guess() }}</p>
+
     
 </div>
 

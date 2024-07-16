@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div>
+    <h1>Settings:</h1>
+    <form action="" method="post">
+        {{ settingsform.hidden_tag() }}
+        <p>
+            {{ settingsform.start_range.label }}<br>
+            {{ settingsform.start_range(size=32) }}<br>
+            {% for error in settingsform.start_range.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ settingsform.end_range.label }}<br>
+            {{ settingsform.end_range(size=32) }}<br>
+            {% for error in settingsform.end_range.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ settingsform.submit_settings() }}</p>
+    </form>
+
+
+
+
+
+{% endblock %}

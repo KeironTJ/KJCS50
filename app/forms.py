@@ -35,3 +35,13 @@ class RegistrationForm(FlaskForm):
             User.email == email.data))
         if user is not None:
             raise ValidationError('Please use a different email address.')
+        
+
+class UserGuessForm(FlaskForm):
+    user_guess = StringField('Guess', validators=[DataRequired()])
+    submit_guess = SubmitField('Submit')
+
+class UserSettingsForm(FlaskForm):
+    start_range = StringField('Start Range', validators=[DataRequired()])
+    end_range = StringField('End Range', validators=[DataRequired()])
+    submit_settings = SubmitField('Submit')

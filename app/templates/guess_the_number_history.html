@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div>
+    <h1>Settings:</h1>
+</div>
+
+<div>
+    <h1>History:</h1>
+    
+    <!-- Nice table format to display history-->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Start Range</th>
+                <th>End Range</th>
+                <th>Correct Number</th>
+                <th>Number of Guesses</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for number, result in history %}
+                <tr>
+                    <td>{{ result.username }}</td>
+                    <td>{{ result.start_range }}</td>
+                    <td>{{ result.end_range }}</td>
+                    <td>{{ result.correct_number }}</td>
+                    <td>{{ result.number_of_guesses }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+        
+
+
+
+{% endblock %}
