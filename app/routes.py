@@ -4,9 +4,10 @@ from app import app, db
 from app.forms import LoginForm, RegistrationForm, UserGuessForm, UserSettingsForm, UserResetForm
 from flask_login import current_user, login_user, logout_user, login_required #type: ignore
 import sqlalchemy as sa # type: ignore
-from app.models import User, GuessTheNumberSettings, GuessTheNumberHistory
+from app.models import User, GuessTheNumberSettings, GuessTheNumberHistory, Role, UserRoles
 from urllib.parse import urlsplit
 from app.game_logic import GameService, reset_game_session, start_game_session
+from app.decorators import admin_required
 
 
 ### The index view function
@@ -18,7 +19,7 @@ def index():
 
     return render_template("index.html", title="Home")
 
-
+## Authentication Routes
 ### The login view function
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -85,6 +86,7 @@ def register():
 
 
 
+## Game Routes
 @app.route('/guess_the_number', methods=['GET', 'POST'])
 @login_required
 def guess_the_number():
@@ -187,3 +189,29 @@ def guess_the_number_settings():
                            title='Guess the number settings',
                            settingsform=settingsform,
                            game_settings=game_settings)
+
+
+
+## Admimn Routes
+@app.route('/admin_home', methods=['GET', 'POST'])
+@login_required
+@admin_required
+def admin_home():
+
+    users = db.session.query(User).all()
+    roles = db.session.query(Role).all()
+    user_roles = db.session.query(UserRoles).all()
+    gamesettings = db.session.query(GuessTheNumberSettings).all()
+    gamehistory = db.session.query(GuessTheNumberHistory).all()
+
+    return render_template('admin_home.html', 
+                           title='Admin Home',
+                           users=users,
+                           roles=roles,
+                           user_roles=user_roles,
+                           gamesettings=gamesettings,
+                           gamehistory=gamehistory)
+
+@app.route('/not_admin')
+def not_admin():
+    return render_template('not_admin.html', title='Not Admin')

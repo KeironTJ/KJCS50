@@ -61,15 +61,17 @@
 }
 
 .customli {
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
     margin-bottom: 10px;
     line-height: 1.6;
     color: #333;
-    padding-left: 20px;
+    padding: 0 20px; 
 }
 
-.customli:before {
-    content: "→ ";
+.customli::before {
+    content: "→";
     color: #007bff;
-    position: relative;
-    left: -20px;
+    margin-right: 10px; 
 }

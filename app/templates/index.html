@@ -12,24 +12,26 @@
 
     <p class="customp">The Project should highlight my understanding of the following programming languages:
         <ul class="customul">
-            <li class="customli">Python</li>
-            <li class="customli">HTML</li>
-            <li class="customli">CSS</li>
-            <li class="customli">JavaScript</li>
+            <li class="customli"><span>Python</span></li>
+            <li class="customli"><span>HTML</span></li>
+            <li class="customli"><span>CSS</span></li>
+            <li class="customli"><span>JavaScript</span></li>
         </ul>
     </p>
 
     <p class="customp">This project should also highlight my understanding of working with Databases</p>
     <p class="customp">I have used SQLAlchemy to persist data required for the Guess the Number game:
         <ul class="customul">
-            <li class="customli">Users</li>
-            <li class="customli">Game History</li>
-            <li class="customli">Game Settings</li>
+            <li class="customli"><span>Users</span></li>
+            <li class="customli"><span>Game History</span></li>
+            <li class="customli"><span>Game Settings</span></li>
 
         </ul>
     </p>
 
     <p class="customp">Enjoy!</p>
+
+    <a class="customa" href="{{ url_for('guess_the_number') }}">Play Game!</a>
 </div>
 
 {% endblock %}

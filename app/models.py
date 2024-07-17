@@ -20,6 +20,8 @@ class User(UserMixin, db.Model):
     #Relationships
     guesses = so.relationship('GuessTheNumberHistory', back_populates='user')
     guess_settings = so.relationship('GuessTheNumberSettings', back_populates='user')
+    roles = so.relationship('Role', secondary='user_roles', back_populates='users')
+    
 
 
     def __repr__(self):
@@ -30,6 +32,30 @@ class User(UserMixin, db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+    
+    def is_admin(self):
+        return 'admin' in [role.name for role in self.roles]
+    
+# Model for the Role table
+class Role(db.Model):
+    id = db.Column(Integer, primary_key=True)
+    name = db.Column(String(64), index=True, unique=True)
+
+    # Relationships
+    users = so.relationship('User', secondary='user_roles', back_populates='roles')
+    
+
+    def __repr__(self):
+        return '<Role {}>'.format(self.name)
+    
+
+    
+# Model for the UserRoles table
+class UserRoles(db.Model):
+    id = db.Column(Integer, primary_key=True)
+    user_id = db.Column(Integer, db.ForeignKey('user.id'))
+    role_id = db.Column(Integer, db.ForeignKey('role.id'))
+
 
 # Model for the Guess the number game table
 class GuessTheNumberSettings(db.Model):
@@ -40,8 +66,6 @@ class GuessTheNumberSettings(db.Model):
 
     # Relationships
     user = so.relationship('User', back_populates='guess_settings')
-
-
 
 
 # Model for the Guess the number game history table

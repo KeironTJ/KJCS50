@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="customdiv">
+    <h1>Admin Home</h1>
+    <p class="customp">Welcome to the Admin Home Page!</p>
+</div>
+
+<div class="customdiv">
+    <h2>View all roles</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for role in roles %}
+                <tr>
+                    <td>{{ role.id }}</td>
+                    <td>{{ role.name }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+<div class="customdiv">
+    <h2>View all users:</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        {% for role in user.roles %}
+                            {{ role.id }}
+                        {% endfor %}        
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="customdiv">
+    <h2>View all games:</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Start Range</th>
+                <th>End Range</th>
+                <th>Correct Number</th>
+                <th>Number of Guesses</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for game in gamehistory %}
+                <tr>
+                    <td>{{ game.id }}</td>
+                    <td>{{ game.user.username }}</td>
+                    <td>{{ game.start_range }}</td>
+                    <td>{{ game.end_range }}</td>
+                    <td>{{ game.correct_number }}</td>
+                    <td>{{ game.number_of_guesses }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="customdiv">
+    <h2>View all user settings</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Start Range</th>
+                <th>End Range</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for settings in gamesettings %}
+                <tr>
+                    <td>{{ settings.id }}</td>
+                    <td>{{ settings.user.username }}</td>
+                    <td>{{ settings.start_range }}</td>
+                    <td>{{ settings.end_range }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+{% endblock %}
