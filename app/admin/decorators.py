@@ -1,9 +1,9 @@
-from flask import redirect, url_for
+from flask import redirect, url_for # type: ignore
 from functools import wraps
 from app.models import Role, UserRoles
 from app import db
-from flask_login import current_user
-from sqlalchemy.exc import SQLAlchemyError
+from flask_login import current_user # type: ignore
+from sqlalchemy.exc import SQLAlchemyError # type: ignore
 
 # Decorator to check if user has admin role
 def admin_required(f):
@@ -23,6 +23,6 @@ def user_has_admin(user_id):
         user_is_admin = db.session.query(UserRoles).filter_by(user_id=user_id, role_id=admin_role_id).first() is not None
         return user_is_admin
     except SQLAlchemyError as e:
-        # Log the error and handle it appropriately
+        
         print(f"Database error occurred: {e}")
         return False

@@ -1,0 +1,42 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+
+<div class="customdiv">
+    <h1>Admin - View all user game settings</h1>
+</div>
+
+
+<div class="customdiv">
+    <h2>View all user settings</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Start Range</th>
+                <th>End Range</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for settings in game_settings %}
+                <tr>
+                    <td>{{ settings.id }}</td>
+                    <td>{{ settings.user.username }}</td>
+                    <td>{{ settings.start_range }}</td>
+                    <td>{{ settings.end_range }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ url_for('admin.admin_home') }}" class="btn btn-primary">Go back</a>
+</div>
+
+
+
+
+
+
+{% endblock %}

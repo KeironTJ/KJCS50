@@ -1,5 +1,3 @@
-
-#create imports
 from app import db
 from app.game import bp
 from app.models import GuessTheNumberSettings, GuessTheNumberHistory
@@ -18,18 +16,15 @@ from app.game import bp
 def guess_the_number():
 
     # Check if the user has settings
-    if GuessTheNumberSettings.query.filter_by(user_id=current_user.id).first() is None:
-        GuessTheNumberSettings(user_id=current_user.id)
+    game_settings = GuessTheNumberSettings.query.filter_by(user_id=current_user.id).first()
+    if game_settings is None:
+        new_settings = GuessTheNumberSettings(user_id=current_user.id)
+        db.session.add(new_settings)
         db.session.commit()
 
     # Forms
     guessform = UserGuessForm()
     resetform = UserResetForm()
-
-    # Queries
-    game_settings = GuessTheNumberSettings.query.filter_by(user_id=current_user.id).first()
-    start_range = game_settings.start_range
-    end_range = game_settings.end_range
 
     # Start the game session
     start_game_session(user_id=current_user.id)
@@ -54,7 +49,7 @@ def guess_the_number():
 
     if request.method == 'POST' and resetform.reset.data:
         reset_game_session()
-        flash("Game reset.")
+        flash("Game reset.", "info")
         return redirect(url_for('game.guess_the_number'))
     
 
@@ -90,10 +85,10 @@ def guess_the_number_settings():
     if request.method == 'POST' and settingsform.submit_settings.data:
         
         # Data Validation
-        if settingsform.start_range.data == None or settingsform.start_range.data < 0:
+        if settingsform.start_range.data is None or settingsform.start_range.data < 0:
             flash("Please enter a start range value greater than 0.", "danger")
             return redirect(url_for('game.guess_the_number_settings'))
-        if settingsform.end_range.data == None or settingsform.end_range.data <= settingsform.start_range.data:
+        if settingsform.end_range.data is None or settingsform.end_range.data <= settingsform.start_range.data:
             flash("Please enter an end range value greater than the start range.", "danger")
             return redirect(url_for('game.guess_the_number_settings'))
         
