@@ -1,10 +1,9 @@
-from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, PasswordField, BooleanField, SubmitField
-from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
+from flask_wtf import FlaskForm # type: ignore
+from wtforms import StringField, PasswordField, BooleanField, SubmitField # type: ignore
+from wtforms.validators import DataRequired, Email, EqualTo, ValidationError # type: ignore
 from app import db
-import sqlalchemy as sa
+import sqlalchemy as sa # type: ignore
 from app.models import User
-
 
 
 
@@ -35,16 +34,3 @@ class RegistrationForm(FlaskForm):
             User.email == email.data))
         if user is not None:
             raise ValidationError('Please use a different email address.')
-        
-
-class UserGuessForm(FlaskForm):
-    user_guess = IntegerField('Guess', validators=[DataRequired()])
-    submit_guess = SubmitField('Submit')
-
-class UserSettingsForm(FlaskForm):
-    start_range = IntegerField('Start Range', validators=[DataRequired()])
-    end_range = IntegerField('End Range', validators=[DataRequired()])
-    submit_settings = SubmitField('Submit')
-
-class UserResetForm(FlaskForm):
-    reset = SubmitField('Reset Game')

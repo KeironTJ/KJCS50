@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "main/base.html" %}
 
 {% block content %}
 
@@ -31,9 +31,9 @@
 </div>
 
 <div class="customdiv">
-    <a class="customa" href="{{ url_for('guess_the_number') }}">Play Game!</a>
+    <a class="customa" href="{{ url_for('game.guess_the_number') }}">Play Game!</a>
     <br>
-    <a class="customa" href="{{ url_for('guess_the_number_settings') }}">Settings</a>
+    <a class="customa" href="{{ url_for('game.guess_the_number_settings') }}">Settings</a>
 </div>
         
 

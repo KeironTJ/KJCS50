@@ -5,12 +5,32 @@ from flask_migrate import Migrate # type: ignore
 from flask_login import LoginManager # type: ignore
 
 
-app = Flask(__name__)
-app.config.from_object(Config)
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
-login = LoginManager(app)
-login.login_view = 'login'
+db = SQLAlchemy()
+migrate = Migrate()
+login = LoginManager()
+login.login_view = 'auth.login'
+
+def create_app(config_class=Config):
+    app = Flask(__name__)
+    app.config.from_object(config_class)
+    db.init_app(app)
+    migrate.init_app(app, db)
+    login.init_app(app)
 
 
-from app import routes, models
+    from app.admin import bp as admin_bp
+    app.register_blueprint(admin_bp)
+
+    from app.auth import bp as auth_bp
+    app.register_blueprint(auth_bp)
+
+    from app.game import bp as game_bp
+    app.register_blueprint(game_bp)
+
+    from app.main import bp as main_bp
+    app.register_blueprint(main_bp)
+
+    return app
+    
+
+from app import models

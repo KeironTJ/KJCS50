@@ -18,26 +18,26 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container">
-            <a class="navbar-brand" href="{{ url_for('guess_the_number') }}">Guess The Number</a>
+            <a class="navbar-brand" href="{{ url_for('game.guess_the_number') }}">Guess The Number</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="{{ url_for('index') }}">Home</a>
+                        <a class="nav-link" aria-current="page" href="{{ url_for('main.index') }}">Home</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href=" {{ url_for('guess_the_number')}}">Play Game!</a>
+                        <a class="nav-link" aria-current="page" href=" {{ url_for('game.guess_the_number')}}">Play Game!</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href=" {{ url_for('guess_the_number_history') }}">Game History</a>
+                        <a class="nav-link" aria-current="page" href=" {{ url_for('game.guess_the_number_history') }}">Game History</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="{{ url_for('guess_the_number_settings') }}">Game Settings</a>
+                        <a class="nav-link" aria-current="page" href="{{ url_for('game.guess_the_number_settings') }}">Game Settings</a>
                     </li>
 
                 </ul>
@@ -48,24 +48,24 @@
 
                     {% if current_user.is_anonymous %}
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{ url_for('login') }}"">Login</a>
+                            <a class="nav-link" aria-current="page" href="{{ url_for('auth.login') }}"">Login</a>
                         </li>
                     {% else %}
 
                         
 
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{ url_for('index')}} ">{{ current_user.username }}</a>
+                            <a class="nav-link" aria-current="page" href="{{ url_for('main.index')}} ">{{ current_user.username }}</a>
                         </li>
 
                         {% if current_user.is_admin() %}
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="{{ url_for('admin_home') }}">Admin</a>
+                                <a class="nav-link" aria-current="page" href="{{ url_for('admin.admin_home') }}">Admin</a>
                             </li>
                         {% endif %}
 
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{ url_for('logout')}} ">Logout</a>
+                            <a class="nav-link" aria-current="page" href="{{ url_for('auth.logout')}} ">Logout</a>
                         </li>
                     {% endif %}
 

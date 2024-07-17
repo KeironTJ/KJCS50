@@ -1,11 +1,9 @@
-from typing import Optional
-from sqlalchemy import Column, Integer, String, DateTime # type: ignore
+from sqlalchemy import Integer, String# type: ignore
 import sqlalchemy.orm as so # type: ignore
 from flask_login import UserMixin # type: ignore
 from app import db, login
 from werkzeug.security import generate_password_hash, check_password_hash # type: ignore
 
-# 
 @login.user_loader
 def load_user(id):
     return db.session.get(User, int(id))

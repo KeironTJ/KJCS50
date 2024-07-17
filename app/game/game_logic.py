@@ -2,10 +2,10 @@
 
 from app import db
 from app.models import User, GuessTheNumberHistory, GuessTheNumberSettings
-import sqlalchemy as sa
+import sqlalchemy as sa # type: ignore
 import random
-from flask import session, flash
-from flask_login import current_user
+from flask import session, flash # type: ignore
+from flask_login import current_user # type: ignore
 
 
 
